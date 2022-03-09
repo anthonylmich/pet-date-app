@@ -7,7 +7,7 @@ Pet.create!(name: "Turkey", gender: "male", description: "A tabby cat that likes
 Pet.create!(name: "fatsy", gender: "male", description: "A grey cat that likes to do nothing more than to eat sleep and scracth the corners on objects.", img_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-sLgf6bCvUFxwQ_5TnXxSDeK-5dug_kP5Nw&usqp=CAU", likes: "eating, sleeping", user_id: 1, dislikes: "loud noises, diet food", fixed: true)
 
 #seed(default/test) data for conversations
-Conversation.create!(recipient: 2, sender: 1)
+Conversation.create!(recipient: 1, sender: 2)
 
 #seed(default/test) data for messages
 Message.create!(conversation_id: 1, content: "message 1", user_id: 1)
