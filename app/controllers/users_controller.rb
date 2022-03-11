@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     user = User.new(
       name: params[:name],
       email: params[:email],
-      location: params[:location],
+      location_city: params[:location_city],
       phone_number: params[:phone_number],
       password: params[:password],
       password_confirmation: params[:password_confirmation]
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def update 
     user = User.find_by(id: params[:id])
     user.name = params[:name] || user.name
-    user.location = params[:location] || user.location
+    user.location_city = params[:location_city] || user.location_city
     user.phone_number = params[:phone_number] || user.phone_number
     if user.save
       render json: user

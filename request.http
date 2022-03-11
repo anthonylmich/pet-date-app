@@ -1,5 +1,5 @@
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDcwNjIzNzl9.E8kFRLP7w7u2yPqvaMtTjrbHLAnSISFjW2iDDsk7148
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDcxMTI5ODd9.DtDomWVPhmWjwABcAzNgW2-AQkx0sRc5KizuZKqY8oA
 
 ### Users create (signup)
 POST {{domain}}/users
@@ -15,11 +15,10 @@ Content-Type: application/json
 ### Users Update not working
 PATCH {{domain}}/users/2 
 Content-Type: application/json
-Authorization: Bearer {{jwt}}
 
 {
   "phone_number": "543-234-9897",
-  "location": "Country side of Rome",
+  "location_city": "Country side of Rome",
 }
 
 ### Sessions create (login)
