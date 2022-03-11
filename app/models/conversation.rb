@@ -1,7 +1,7 @@
 class Conversation < ApplicationRecord
-  belongs_to :recipient, class_name: "User" #What do I do 
-  belongs_to :sender, class_name: "User" #What do with is as well
+  belongs_to :recipient, class_name: "User"
+  belongs_to :sender, class_name: "User"
   has_many :messages 
-  validates :author, uniqueness: {scope: :receiver}
 end
-# -> { order(created_at: :asc) } dependent: :destroy
+# -> { order(created_at: :asc) } dependent: :destroy 
+# validates :author, uniqueness: {scope: :receiver}
