@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  before_actiom :authenticate_user, except: [:index, :show]
+  before_action :authenticate_user, except: [:index, :show]
 
   #actions that don't require user to be logged in.
   def index 

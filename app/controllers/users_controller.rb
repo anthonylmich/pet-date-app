@@ -15,12 +15,11 @@ class UsersController < ApplicationController
       render json: { errors: user.errors.full_messages }, status: :bad_request
     end
   end
-end
 
-def show
-  user = User.find_by(id: params[:id])
-  render json: user
-end
+  def show
+    user = User.find_by(id: params[:id])
+    render json: user
+  end
 #this allows a user to update their user id. Do I need a User update?
   def update 
     user = User.find_by(id: params[:id])

@@ -33,5 +33,3 @@ class ConversationsController < ApplicationController
       render json: { message: "Conversation successfully destroyed!" }
     end
 end
-
-end
