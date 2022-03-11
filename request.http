@@ -1,5 +1,5 @@
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDY2OTY2OTF9.KDKlKVSSGiicsa9vwHUd3a6AX7Jk2A2WEAETcf74XvQ
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDcwNjIzNzl9.E8kFRLP7w7u2yPqvaMtTjrbHLAnSISFjW2iDDsk7148
 
 ### Users create (signup)
 POST {{domain}}/users
@@ -12,14 +12,45 @@ Content-Type: application/json
   "password_confirmation": "password"
 }
 
+### Users Update not working
+PATCH {{domain}}/users/2 
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+{
+  "phone_number": "543-234-9897",
+  "location": "Country side of Rome",
+}
+
 ### Sessions create (login)
 POST {{domain}}/sessions
 Content-Type: application/json
 
 {
-  "email": "admin@gmail.com",
+  "email": "one@test.com",
   "password": "password"
 }
 
-### Content-Type: application/json
-### Authorization: Bearer {{jwt}}
+### Pet Create
+POST {{domain}}/pets
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+{
+  "name": "Tripod",
+  "gender": "male",
+  "description": "A black fluffy cat who hates everything. He's a Goth cat. The name 'tripod' comes from him only having three legs",
+  "img_url": "",
+  "likes": "Biting, Marking his territory, sleeping, ocassional ear scritches",
+  "dislikes": "attention, life, humans",
+  "fixed": true,
+}
+
+### Pet Update
+PATCH {{domain}}/pets/
+Content-Type: application/json
+
+{}
+
+### Pet Delete
+DELETE {{domain}}/pets/
