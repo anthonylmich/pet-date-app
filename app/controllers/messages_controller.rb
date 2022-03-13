@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     messages = Message.all.order(:id)
     render json: messages
   end
+
 #actions that require a user to be logged in
 #this allows a user to create a new message "listing/post"
     def create 

@@ -1,39 +1,45 @@
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoyLCJleHAiOjE2NDcxMTI5ODd9.DtDomWVPhmWjwABcAzNgW2-AQkx0sRc5KizuZKqY8oA
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDcyODczNjh9.N6VRgxgfdX-fY9O4XJdsIFS3blBys4vDktbHRzRe6sI
 
-### Users create (signup)
+### Users create (signup) (works)
 POST {{domain}}/users
 Content-Type: application/json
 
 {
-  "name": "admin",
-  "email": "admin@gmail.com",
+  "name": "Turkey",
+  "email": "turkey@gmail.com",
   "password": "password",
   "password_confirmation": "password"
 }
 
-### Users Update not working
-PATCH {{domain}}/users/2 
-Content-Type: application/json
-
-{
-  "phone_number": "543-234-9897",
-  "location_city": "Country side of Rome",
-}
-
-### Sessions create (login)
+### Sessions create (login) (works)
 POST {{domain}}/sessions
 Content-Type: application/json
 
 {
-  "email": "one@test.com",
+  "email": "admin@admin.com",
   "password": "password"
 }
 
-### Pet Create
-POST {{domain}}/pets
+### Users Update not working
+PATCH {{domain}}/users/1 
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
+
+{
+  "phone_number": 543-234-989,
+  "location_city": "Country side of Rome",
+}
+
+### User destroy (works)
+DELETE {{domain}}/users/3
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+### Pet Create (Not working same parsing issue with params as the user update.)
+POST {{domain}}/pets
+Content-Type: application/json
+Authorization: Bearer {{jwt}} 
 
 {
   "name": "Tripod",
@@ -45,11 +51,26 @@ Authorization: Bearer {{jwt}}
   "fixed": true,
 }
 
-### Pet Update
-PATCH {{domain}}/pets/
+### Pet Update (same issue as pet create and user update)
+PATCH {{domain}}/pets/2
 Content-Type: application/json
+Authorization: Bearer {{jwt}}
 
-{}
+{
+"name": "schrodinger",
+}
 
-### Pet Delete
-DELETE {{domain}}/pets/
+### Pet Delete (works)
+DELETE {{domain}}/pets/3
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+### Conversation delete (works)
+DELETE {{domain}}/conversations/1
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+### Message delete (works)
+DELETE {{domain}}/messages/2
+Content-Type: application/json
+Authorization: Bearer {{jwt}}

@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
   # This is a user signup in essence.
+  def index
+    users = User.all
+    render json: users
+  end
+
   def create
     user = User.new(
       name: params[:name],
