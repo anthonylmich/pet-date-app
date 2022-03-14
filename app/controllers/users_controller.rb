@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   # This is a user signup in essence.
-  
+  before_action :authenticate_user, except: [:show, :create]
   def create
     user = User.new(
       name: params[:name],

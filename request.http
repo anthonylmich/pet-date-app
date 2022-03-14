@@ -1,5 +1,5 @@
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE2NDczNjU0MjZ9.ffVKsifE2b7RspvtnKrd_mgmubsuxb2DJh3q6RVtTMc
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDczNjY3NTl9.HRwMfxvCoRIU-lMkoDTXtblVPPM4zJmViogUEM47fUA
 ### Users create (signup) (works)
 POST {{domain}}/users
 Content-Type: application/json
@@ -18,7 +18,7 @@ POST {{domain}}/sessions
 Content-Type: application/json
 
 {
-  "email": "maple@gmail.com",
+  "email": "turkey@gmail.com",
   "password": "password"
 }
 
@@ -99,7 +99,7 @@ Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 ### Conversation delete (works)
-DELETE {{domain}}/conversations/3
+DELETE {{domain}}/conversations/2
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
@@ -127,8 +127,8 @@ Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 {
-"conversation_id": "6",
-"content": "message 1 for conversation 6"
+"conversation_id": "4",
+"content": "message 2 for conversation 4"
 }
 
 

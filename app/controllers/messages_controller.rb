@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   #actions that don't require user to be logged in.
   #this will allow the user to view all the messages in the conversation show page.
   def index 
+    #How should I make this only for the conversation?
     messages = Message.all.order(:id)
     render json: messages
   end

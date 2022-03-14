@@ -27,10 +27,11 @@ class ConversationsController < ApplicationController
     end
   end
 
-#this allows the user to deletes one of their conversation "listings/posts"
-    def destroy 
-      conversation = current_user.conversations.find_by(id: params[:id])
-      conversation.destroy
-      render json: { message: "Conversation successfully destroyed!" }
-    end
+#this allows the user to deletes one of their conversation "listings/posts" 
+#a User should never need to destroy a conversation.
+    # def destroy 
+    #   conversation = current_user.conversations.find_by(id: params[:id])
+    #   conversation.destroy
+    #   render json: { message: "Conversation successfully destroyed!" }
+    # end
 end
