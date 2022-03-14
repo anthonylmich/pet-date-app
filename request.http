@@ -1,15 +1,16 @@
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE2NDcyODczNjh9.N6VRgxgfdX-fY9O4XJdsIFS3blBys4vDktbHRzRe6sI
-
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo1LCJleHAiOjE2NDczNjU0MjZ9.ffVKsifE2b7RspvtnKrd_mgmubsuxb2DJh3q6RVtTMc
 ### Users create (signup) (works)
 POST {{domain}}/users
 Content-Type: application/json
 
 {
-  "name": "Turkey",
-  "email": "turkey@gmail.com",
+  "name": "maple",
+  "email": "maple@gmail.com",
   "password": "password",
-  "password_confirmation": "password"
+  "password_confirmation": "password",
+  "phone_number": "543-234-989",
+  "location_city": "Country side of maple"
 }
 
 ### Sessions create (login) (works)
@@ -17,18 +18,23 @@ POST {{domain}}/sessions
 Content-Type: application/json
 
 {
-  "email": "admin@admin.com",
+  "email": "maple@gmail.com",
   "password": "password"
 }
 
-### Users Update not working
-PATCH {{domain}}/users/1 
+### User show
+GET {{domain}}/users/5
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+### Users Update working
+PATCH {{domain}}/users/4 
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 {
-  "phone_number": 543-234-989,
-  "location_city": "Country side of Rome",
+  "phone_number": "543-234-989",
+  "location_city": "Country side of greece"
 }
 
 ### User destroy (works)
@@ -36,41 +42,94 @@ DELETE {{domain}}/users/3
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
-### Pet Create (Not working same parsing issue with params as the user update.)
+
+##### All user models are working.(this includes session method or login.)
+
+
+### Pet index
+GET {{domain}}/pets
+Content-Type: application/json
+
+### Pet show
+GET {{domain}}/pets/1
+Content-Type: application/json
+# Authorization: Bearer {{jwt}}
+
+### Pet Create working
 POST {{domain}}/pets
 Content-Type: application/json
 Authorization: Bearer {{jwt}} 
 
 {
-  "name": "Tripod",
+  "name": "Toblerone",
   "gender": "male",
-  "description": "A black fluffy cat who hates everything. He's a Goth cat. The name 'tripod' comes from him only having three legs",
+  "description": "A simple kind reptiallian who like to curl up to gather warmth. He's a friendly snake. The name 'Toblerone' comes from his pattern of scales",
   "img_url": "",
-  "likes": "Biting, Marking his territory, sleeping, ocassional ear scritches",
-  "dislikes": "attention, life, humans",
-  "fixed": true,
+  "likes": "sleeping under the woodchips, and curling around human hands",
+  "dislikes": "too much movement, loud noises",
+  "fixed": false
 }
 
-### Pet Update (same issue as pet create and user update)
-PATCH {{domain}}/pets/2
+### Pet Update working
+PATCH {{domain}}/pets/4
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 {
-"name": "schrodinger",
+"name": "bigera"
 }
 
 ### Pet Delete (works)
-DELETE {{domain}}/pets/3
+DELETE {{domain}}/pets/2
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+
+##### All Pet methods are working
+
+
+### Conversation Index
+GET {{domain}}/conversations
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+### Conversation show
+GET {{domain}}/conversations/4
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 ### Conversation delete (works)
-DELETE {{domain}}/conversations/1
+DELETE {{domain}}/conversations/3
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
-### Message delete (works)
-DELETE {{domain}}/messages/2
+### Conversation create
+POST {{domain}}/conversations
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
+
+{
+  "recipient_id": 1
+}
+
+
+##### All conversation methods work
+
+
+### Message index (Works but need to be changed to only show the ones between the two users.)
+GET {{domain}}/messages
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+### Message create
+POST {{domain}}/messages
+Content-Type: application/json
+Authorization: Bearer {{jwt}}
+
+{
+"conversation_id": "6",
+"content": "message 1 for conversation 6"
+}
+
+
+##### All message methods work

@@ -1,15 +1,16 @@
 class ConversationsController < ApplicationController
   #all of the actions for conversations require that a user must be logged in inorder to function properly.
+  before_action :authenticate_user
 
   #allows the user to view all conversations THEY are in.
   def index 
-    conversations = Conversation.all.order(:id)
+    conversations = current_user.conversations
     render json: conversations
   end
 
   #allows the user to view their conversation and edit the data within if wanted.
   def show
-    conversation = Conversation.find_by(id: params[:id])
+    conversation = current_user.conversations.find_by(id: params[:id])
     render json: conversation
   end
 
@@ -17,7 +18,7 @@ class ConversationsController < ApplicationController
   def create 
     conversation = Conversation.new(
       sender_id: current_user.id,
-      recipient: params[:recipient],
+      recipient_id: params[:recipient_id],
     )
     if conversation.save
       render json: conversation
@@ -28,7 +29,7 @@ class ConversationsController < ApplicationController
 
 #this allows the user to deletes one of their conversation "listings/posts"
     def destroy 
-      conversation = Conversation.find_by(id: params[:id])
+      conversation = current_user.conversations.find_by(id: params[:id])
       conversation.destroy
       render json: { message: "Conversation successfully destroyed!" }
     end

@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
   # This is a user signup in essence.
-  def index
-    users = User.all
-    render json: users
-  end
-
+  
   def create
     user = User.new(
       name: params[:name],
@@ -25,6 +21,7 @@ class UsersController < ApplicationController
     user = User.find_by(id: params[:id])
     render json: user
   end
+
 #this allows a user to update their user id. Do I need a User update?
   def update 
     user = User.find_by(id: params[:id])
@@ -37,6 +34,7 @@ class UsersController < ApplicationController
       render json: {errors: user.errors.full_messages }, status: :bad_request
     end
   end
+  
 #this allows the user to deletes one of their user "listings/posts"
   def destroy 
     user = User.find_by(id: params[:id])

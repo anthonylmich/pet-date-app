@@ -1,6 +1,6 @@
 class PetsController < ApplicationController
   before_action :authenticate_user, except: [:index, :show]
-
+# ** = method has issue with parsing the parameters.
   #actions that don't require user to be logged in.
   def index 
     pets = Pet.all.order(:id)
@@ -14,6 +14,7 @@ class PetsController < ApplicationController
 
   #actions that require a user to be logged in
   #this allows a user to create a new pet "listing/post"
+  # **
   def create 
     pet = Pet.new(
       user_id: current_user.id,
@@ -32,6 +33,7 @@ class PetsController < ApplicationController
     end
   end
 #this allows a user to change his/her pet's post data
+# **
     def update 
       pet = Pet.find_by(id: params[:id])
       pet.name = params[:name] || pet.name
