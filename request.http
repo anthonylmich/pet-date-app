@@ -1,5 +1,5 @@
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2NDczNzE5NzB9.M5DBMuNrppwBz-k22s1fYY_4-WdOX7_KW_fTLh-UBHQ
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2NDczODAzNzd9.cL57Lh7G1wEYJsabOzcWxwAoYvQtV8S_41fE2iCObMs
 ### Users create (signup) (works)
 POST {{domain}}/users
 Content-Type: application/json
@@ -18,7 +18,7 @@ POST {{domain}}/sessions
 Content-Type: application/json
 
 {
-  "email": "birch@gmail.com",
+  "email": "turkey@gmail.com",
   "password": "password"
 }
 
@@ -70,16 +70,16 @@ Authorization: Bearer {{jwt}}
 }
 
 ### Pet Update working
-PATCH {{domain}}/pets/4
+PATCH {{domain}}/pets/7
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 {
-"name": "bigera"
+"name": "name"
 }
 
 ### Pet Delete (works)
-DELETE {{domain}}/pets/2
+DELETE {{domain}}/pets/7
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
