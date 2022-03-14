@@ -1,16 +1,16 @@
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDczNjY3NTl9.HRwMfxvCoRIU-lMkoDTXtblVPPM4zJmViogUEM47fUA
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo2LCJleHAiOjE2NDczNzE5NzB9.M5DBMuNrppwBz-k22s1fYY_4-WdOX7_KW_fTLh-UBHQ
 ### Users create (signup) (works)
 POST {{domain}}/users
 Content-Type: application/json
 
 {
-  "name": "maple",
-  "email": "maple@gmail.com",
+  "name": "birch",
+  "email": "birch@gmail.com",
   "password": "password",
   "password_confirmation": "password",
   "phone_number": "543-234-989",
-  "location_city": "Country side of maple"
+  "location_city": "Country side of firn"
 }
 
 ### Sessions create (login) (works)
@@ -18,7 +18,7 @@ POST {{domain}}/sessions
 Content-Type: application/json
 
 {
-  "email": "turkey@gmail.com",
+  "email": "birch@gmail.com",
   "password": "password"
 }
 
@@ -28,13 +28,12 @@ Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 ### Users Update working
-PATCH {{domain}}/users/4 
+PATCH {{domain}}/users/5 
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 {
-  "phone_number": "543-234-989",
-  "location_city": "Country side of greece"
+  "location_city": "Maple forest"
 }
 
 ### User destroy (works)
@@ -61,9 +60,9 @@ Content-Type: application/json
 Authorization: Bearer {{jwt}} 
 
 {
-  "name": "Toblerone",
+  "name": "test",
   "gender": "male",
-  "description": "A simple kind reptiallian who like to curl up to gather warmth. He's a friendly snake. The name 'Toblerone' comes from his pattern of scales",
+  "description": "A simple kind reptiallian who like to curl up to gather warmth. He's a friendly snake. The name 'test' comes from his pattern of scales",
   "img_url": "",
   "likes": "sleeping under the woodchips, and curling around human hands",
   "dislikes": "too much movement, loud noises",

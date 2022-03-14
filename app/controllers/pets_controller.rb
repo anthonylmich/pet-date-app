@@ -43,7 +43,7 @@ class PetsController < ApplicationController
       pet.likes = params[:likes] || pet.likes
       pet.dislikes = params[:dislikes] || pet.dislikes
       pet.fixed = params[:fixed] || pet.fixed
-      if pet.save && current_user == pet.user_id
+      if pet.save
         render json: pet
       else
         render json: {errors: pet.errors.full_messages }, status: :bad_request
@@ -52,10 +52,7 @@ class PetsController < ApplicationController
 #this allows the user to deletes one of their pet "listings/posts"
     def destroy 
       pet = Pet.find_by(id: params[:id])
-      if current_user == pet.user_id
-        pet.destroy 
-        render json: { message: "Pet successfully destroyed!" }
-      else
-        render json: {errors: pet.errors.full_messages }, status: :unauthorized
+      pet.destroy 
+      render json: { message: "Pet successfully destroyed!" }
     end
 end

@@ -18,17 +18,17 @@ class UsersController < ApplicationController
   end
 
   def show
-    user = User.find_by(id: params[:id])
+    user = current_user
     render json: user
   end
 
 #this allows a user to update their user id. Do I need a User update?
   def update 
-    user = User.find_by(id: params[:id])
+    user = current_user
     user.name = params[:name] || user.name
     user.location_city = params[:location_city] || user.location_city
     user.phone_number = params[:phone_number] || user.phone_number
-    if user.save && current_user = user.id
+    if user.save
       render json: user
     else
       render json: {errors: user.errors.full_messages }, status: :bad_request
@@ -37,12 +37,9 @@ class UsersController < ApplicationController
   
 #this allows the user to deletes one of their user "listings/posts"
   def destroy 
-    user = User.find_by(id: params[:id])
-    if current_user == user.id
-      user.destroy
-      render json: { message: "User successfully destroyed!" }
-    else
-      render json: {errors: user.errors.full_messages }, status: :unauthorized
-    end
+    user = current_user
+    user.destroy
+    Conversation.where("sender_id = ? OR recipient_id = ?", current_user.id, current_user.id).destroy
+    render json: { message: "User successfully destroyed!" }
   end
 end
