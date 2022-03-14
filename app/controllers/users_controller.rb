@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     user.name = params[:name] || user.name
     user.location_city = params[:location_city] || user.location_city
     user.phone_number = params[:phone_number] || user.phone_number
-    if user.save
+    if user.save && current_user = user.id
       render json: user
     else
       render json: {errors: user.errors.full_messages }, status: :bad_request
@@ -38,7 +38,11 @@ class UsersController < ApplicationController
 #this allows the user to deletes one of their user "listings/posts"
   def destroy 
     user = User.find_by(id: params[:id])
-    user.destroy
-    render json: { message: "User successfully destroyed!" }
+    if current_user == user.id
+      user.destroy
+      render json: { message: "User successfully destroyed!" }
+    else
+      render json: {errors: user.errors.full_messages }, status: :unauthorized
+    end
   end
 end
