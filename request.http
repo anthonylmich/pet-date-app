@@ -1,5 +1,6 @@
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo3LCJleHAiOjE2NDczODAzNzd9.cL57Lh7G1wEYJsabOzcWxwAoYvQtV8S_41fE2iCObMs
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDc0NTI4MzJ9.WV4Bm_jhEGpGjSvNSyW95ZACl_UC-lpQIJQRY2Y1LcE
+
 ### Users create (signup) (works)
 POST {{domain}}/users
 Content-Type: application/json
@@ -41,16 +42,14 @@ DELETE {{domain}}/users/3
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
-
 ##### All user models are working.(this includes session method or login.)
-
 
 ### Pet index
 GET {{domain}}/pets
 Content-Type: application/json
 
 ### Pet show
-GET {{domain}}/pets/1
+GET {{domain}}/pets/4
 Content-Type: application/json
 # Authorization: Bearer {{jwt}}
 
@@ -83,9 +82,7 @@ DELETE {{domain}}/pets/7
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
-
 ##### All Pet methods are working
-
 
 ### Conversation Index
 GET {{domain}}/conversations
@@ -111,9 +108,7 @@ Authorization: Bearer {{jwt}}
   "recipient_id": 1
 }
 
-
 ##### All conversation methods work
-
 
 ### Message index (Works but need to be changed to only show the ones between the two users.)
 GET {{domain}}/messages
@@ -129,6 +124,5 @@ Authorization: Bearer {{jwt}}
 "conversation_id": "4",
 "content": "message 2 for conversation 4"
 }
-
 
 ##### All message methods work

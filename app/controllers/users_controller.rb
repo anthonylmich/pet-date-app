@@ -38,8 +38,9 @@ class UsersController < ApplicationController
 #this allows the user to deletes one of their user "listings/posts"
   def destroy 
     user = current_user
-    user.destroy
-    Conversation.where("sender_id = ? OR recipient_id = ?", current_user.id, current_user.id).destroy
-    render json: { message: "User successfully destroyed!" }
+    if user.destroy
+      Conversation.where("sender_id = ? OR recipient_id = ?", current_user.id, current_user.id).destroy
+      render json: { message: "User successfully destroyed!" }
+    end
   end
 end
