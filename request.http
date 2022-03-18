@@ -1,5 +1,5 @@
 @domain = http://localhost:3000
-@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDc0NTI4MzJ9.WV4Bm_jhEGpGjSvNSyW95ZACl_UC-lpQIJQRY2Y1LcE
+@jwt = eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE2NDc2NDQwMjJ9.JcMWG7s04V_OZQtSvmsgmlhmge2RX0ViAE7UVuzxeew
 
 ### Users create (signup) (works)
 POST {{domain}}/users
@@ -69,12 +69,12 @@ Authorization: Bearer {{jwt}}
 }
 
 ### Pet Update working
-PATCH {{domain}}/pets/7
+PATCH {{domain}}/pets/4
 Content-Type: application/json
 Authorization: Bearer {{jwt}}
 
 {
-"name": "name"
+"img_url": "https://www.floridamuseum.ufl.edu/wp-content/uploads/sites/116/2020/10/photo_17.jpg"
 }
 
 ### Pet Delete (works)
