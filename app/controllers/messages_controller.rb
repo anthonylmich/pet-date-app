@@ -1,15 +1,15 @@
 class MessagesController < ApplicationController
   before_action :authenticate_user
-  #actions that don't require user to be logged in.
   #this will allow the user to view all the messages in the conversation show page.
+
   def index 
     #How should I make this only for the conversation?
     messages = Message.all.order(:id)
     render json: messages
   end
 
-#actions that require a user to be logged in
 #this allows a user to create a new message "listing/post"
+
     def create 
       message = Message.new(
       user_id: current_user.id,
@@ -22,6 +22,7 @@ class MessagesController < ApplicationController
       render json: { errors: message.errors.full_messages }, status: :unprocessable_entity
     end
   end
+end
 #this allows a user to change his/her message's post data but is not necesscary
 #     def update 
 #       message = Message.find_by(id: params[:id])
@@ -38,4 +39,3 @@ class MessagesController < ApplicationController
 #       message.destroy
 #       render json: { message: "Message successfully destroyed!" }
 #     end
-end
