@@ -5,13 +5,13 @@ class ConversationsController < ApplicationController
   #allows the user to view all conversations THEY are in.
   def index 
     conversations = current_user.conversations
-    render json: conversations
+    render json: conversations, include: ["partner", "last_message"]
   end
 
   #allows the user to view their conversation and edit the data within if wanted.
   def show
     conversation = current_user.conversations.find_by(id: params[:id])
-    render json: conversation
+    render json: conversation, include: ["partner", "messages"] 
   end
 
   #this allows a user to create a new conversation "listing/post"
